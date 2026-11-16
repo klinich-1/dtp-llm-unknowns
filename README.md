@@ -1,41 +1,41 @@
-# Сохраняют ли языковые модели неизвестность? Извлечение обстоятельств ДТП из рассказа водителя
+# Do Large Language Models Preserve the Unknown? Extracting Road-Accident Facts from Driver Accounts
 
-Материалы к статье «Сохраняют ли большие языковые модели неизвестность? Извлечение обстоятельств ДТП из рассказа водителя: GigaChat, Claude, GPT и DeepSeek» (К. В. Багин, А. Ю. Федорович, Т. В. Новиков, Д. Е. Анисимов, Д. Ю. Федорович, А. А. Беленко; ИРИТ-РТФ УрФУ).
+Data and code accompanying the paper *“Do Large Language Models Preserve the Unknown? Extracting Road-Accident Circumstances from Driver Accounts with GigaChat, Claude, GPT and DeepSeek”* by K. V. Bagin, A. Yu. Fedorovich, T. V. Novikov, D. E. Anisimov, D. Yu. Fedorovich and A. A. Belenko (Institute of Radioelectronics and Information Technologies, Ural Federal University, Yekaterinburg, Russia).
 
-*Data and code for a study of how large language models extract road-accident facts from Russian-language driver accounts and whether they preserve unknown values instead of guessing.*
+The study measures, separately, how well LLMs (1) transfer facts a driver states explicitly, (2) infer facts that follow from the account, and (3) answer `unknown` when the account contains no information, instead of filling the field with a plausible guess. The accounts are in Russian.
 
-## Что здесь лежит
+## Contents
 
-| Файл | Содержание |
+| File | Description |
 |---|---|
-| `corpus.json` | 36 историй × 11 полей, эталон из 396 значений с метками типа: `e` — явное, `i` — выводимое, `u` — неизвестное. Версия v1, SHA-256 `0fb35925b897bf3c9c551ff89a3330eb27a117f4e2d04613ed0d5a8adcd0ab41` |
-| `build_corpus.py` | исходник корпуса и эталона, из него собирается `corpus.json` |
-| `prompt.txt`, `prompt_base.txt` | строгий промпт (с запретом додумывать) и базовый (без этого абзаца) |
-| `configs.json` | 12 конфигураций: 6 моделей × 2 промпта |
-| `run_gigachat.py` | запуск моделей и запись ответов |
-| `metrics.py` | расчёт всех метрик и доверительных интервалов |
-| `figures.py` | рисунок 2 статьи |
-| `annotation.py`, `annotation/` | инструмент для независимой разметки эталона двумя экспертами и расчёта каппы Коэна |
-| `results/raw.jsonl` | 1080 ответов GigaChat-2 Lite, Pro, Max (6.11.2026) |
-| `results/raw_ext.jsonl` | 1080 ответов Claude Sonnet 5.5, GPT-6 Sol, DeepSeek V4 Pro (11–12.11.2026) |
-| `results/all/` | итоговые таблицы (`report.md`, CSV), разбор ошибок (`errors.csv`) и рисунок |
+| `corpus.json` | 36 synthetic driver accounts × 11 fields: a gold standard of 396 values, each labelled `e` (explicit), `i` (inferred) or `u` (unknown). Version v1, SHA-256 `0fb35925b897bf3c9c551ff89a3330eb27a117f4e2d04613ed0d5a8adcd0ab41` |
+| `build_corpus.py` | source of the corpus and gold standard; generates `corpus.json` |
+| `prompt.txt`, `prompt_base.txt` | strict prompt (with an explicit “do not guess” rule) and base prompt (the same text without that paragraph) |
+| `configs.json` | 12 configurations: 6 models × 2 prompts |
+| `run_gigachat.py` | queries the models and appends responses to a JSONL file |
+| `metrics.py` | computes all metrics and bootstrap confidence intervals |
+| `figures.py` | Figure 2 of the paper |
+| `annotation.py`, `annotation/` | tool for independent double annotation of the gold standard and Cohen's kappa |
+| `results/raw.jsonl` | 1,080 responses of GigaChat-2 Lite, Pro and Max (6 Nov 2026) |
+| `results/raw_ext.jsonl` | 1,080 responses of Claude Sonnet 5.5, GPT-6 Sol and DeepSeek V4 Pro (11–12 Nov 2026) |
+| `results/all/` | final tables (`report.md`, CSV), per-error file (`errors.csv`) and the figure |
 
-Каждая запись в `raw*.jsonl` содержит конфигурацию, историю, номер повтора, полный текст ответа, причину завершения, возвращённый идентификатор модели, расход токенов и задержку.
+Each record in `raw*.jsonl` holds the configuration, account id, repeat index, full response text, finish reason, model identifier returned by the API, token usage and latency.
 
-## Модели
+## Models
 
-| Модель | Доступ | Параметры |
+| Model | Access | Parameters |
 |---|---|---|
-| GigaChat-2, GigaChat-2-Pro, GigaChat-2-Max (версия 2.0.28.2) | REST API GigaChat | temperature 0,1 |
-| claude-sonnet-5-5 | коммерческий агрегатор API, протокол Anthropic Messages | temperature по умолчанию, effort low |
-| gpt-6-sol | коммерческий агрегатор API, протокол OpenAI Chat Completions | temperature 0,1, reasoning_effort low |
-| deepseek-v4-pro-0813 | коммерческий агрегатор API, протокол OpenAI Chat Completions | temperature 0,1 |
+| GigaChat-2, GigaChat-2-Pro, GigaChat-2-Max (version 2.0.28.2) | GigaChat REST API | temperature 0.1 |
+| claude-sonnet-5-5 | commercial API aggregator, Anthropic Messages protocol | default temperature, effort `low` |
+| gpt-6-sol | commercial API aggregator, OpenAI Chat Completions protocol | temperature 0.1, reasoning_effort `low` |
+| deepseek-v4-pro-0813 | commercial API aggregator, OpenAI Chat Completions protocol | temperature 0.1 |
 
-Каждая история запрашивалась 5 раз независимо, всего 2160 ответов.
+Every account was queried five times independently: 2,160 responses in total.
 
-## Как воспроизвести метрики
+## Reproducing the metrics
 
-Нужен Python 3.10+ и `matplotlib`. API для этого не требуется: всё считается по сохранённым ответам.
+Requires Python 3.10+ and `matplotlib`. No API access is needed: everything is computed from the stored responses.
 
 ```bash
 cat results/raw.jsonl results/raw_ext.jsonl > results/raw_all.jsonl
@@ -43,34 +43,39 @@ python metrics.py --raw results/raw_all.jsonl --tag all
 python figures.py . results/all/fig_main.png
 ```
 
-Таблицы появятся в `results/all/report.md`.
+Tables are written to `results/all/report.md`. Table and column labels in the generated report are in Russian; the glossary below maps them to the metrics in the paper.
 
-## Как перезапустить модели
+## Re-running the models
 
-Ключи в репозиторий не входят. Для GigaChat положите ключ авторизации в `gigachat_key.txt` (первая строка — ключ, вторая — scope) и сертификат НУЦ Минцифры `russian_trusted_root_ca.pem` рядом со скриптом. Для внешних моделей положите в `star_key.txt` ключ (первая строка) и базовый URL OpenAI-совместимого API (вторая строка, например `https://.../v1`).
+API keys are not included. For GigaChat, put the authorization key in `gigachat_key.txt` (line 1: key, line 2: scope) and the Russian Trusted Root CA certificate `russian_trusted_root_ca.pem` next to the script. For the other models, put the key (line 1) and the base URL of an OpenAI-compatible API (line 2, e.g. `https://.../v1`) in `star_key.txt`.
 
 ```bash
 python run_gigachat.py --only "Lite,Pro,Max" --out results/raw.jsonl
 python run_gigachat.py --only "Claude,GPT-6 Sol,DeepSeek" --workers 4 --out results/raw_ext.jsonl
 ```
 
-Если прогон прервётся, повторный запуск продолжит с места остановки. Проверить конвейер без API можно в режиме имитации: `python run_gigachat.py --mock`.
+An interrupted run resumes where it stopped. To test the pipeline without any API, use `python run_gigachat.py --mock`.
 
-## Метрики
+## Metrics
 
-| Метрика | Смысл |
+| Metric (report label) | Meaning |
 |---|---|
-| Объект получен | ответ удалось разобрать как JSON |
-| Полный формат | все 11 полей есть и значения допустимые |
-| Точность | доля верных значений в полученных ответах |
-| Известные верно | точность на явных и выводимых значениях |
-| Неизвестность сохранена | модель ответила `unknown` там, где в рассказе нет сведений |
-| Ложное unknown | модель ответила `unknown`, хотя значение известно |
-| Точный набор | все 11 полей верны в одном ответе |
-| Устойчивость | одинаковый ответ во всех пяти повторах |
+| Object obtained (`объект получен`) | the response parses as a JSON object |
+| Full format (`полный формат`) | all 11 fields are present with valid values |
+| Accuracy (`точность (все)`) | share of values matching the gold standard, over obtained responses |
+| Known correct (`известные верно`) | accuracy on explicit and inferred values |
+| Unknown preserved (`неизвестность сохранена`) | the model answered `unknown` where the account gives no information |
+| Fabricated (`додумано`) | complement of the above: the field was filled with a guess |
+| False unknown (`ложное unknown`) | the model answered `unknown` although the value is known |
+| Exact set (`точный набор`) | all 11 fields correct in one response |
+| Stability (`устойчивость`) | the same answer in all five repeats |
 
-95% доверительные интервалы считаются кластерным бутстрэпом по историям (2000 выборок), парные разности — бутстрэпом на одних и тех же историях.
+95% confidence intervals use a cluster bootstrap over accounts (2,000 resamples); differences between configurations use a paired bootstrap on the same accounts.
 
-## Ограничения
+## Limitations
 
-Корпус синтетический. Эталон проверен одним экспертом. Внешние модели вызывались через агрегатор, а не через API разработчиков. Подробнее — в разделе «Ограничения» статьи.
+The corpus is synthetic. The gold standard was checked by a single expert. The non-GigaChat models were accessed through a commercial aggregator rather than the developers' own APIs. See the Limitations section of the paper for details.
+
+## Citation
+
+If you use these data, please cite the paper (citation details will be added after publication).
