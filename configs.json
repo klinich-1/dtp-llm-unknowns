@@ -1,0 +1,85 @@
+{
+ "_comment": "prompt.txt — с правилом «не додумывай»; prompt_base.txt — без него. reasoning_effort на GigaChat-2 не влияет, поэтому не используется. Конфигурации с provider=star идут через агрегатор ai.starimg.ru (star_key.txt).",
+ "repeats": 5,
+ "temperature": 0.1,
+ "configs": [
+  {
+   "name": "Lite строгий",
+   "model": "GigaChat-2",
+   "reasoning_effort": null,
+   "prompt": "prompt.txt"
+  },
+  {
+   "name": "Lite базовый",
+   "model": "GigaChat-2",
+   "reasoning_effort": null,
+   "prompt": "prompt_base.txt"
+  },
+  {
+   "name": "Pro строгий",
+   "model": "GigaChat-2-Pro",
+   "reasoning_effort": null,
+   "prompt": "prompt.txt"
+  },
+  {
+   "name": "Pro базовый",
+   "model": "GigaChat-2-Pro",
+   "reasoning_effort": null,
+   "prompt": "prompt_base.txt"
+  },
+  {
+   "name": "Max строгий",
+   "model": "GigaChat-2-Max",
+   "reasoning_effort": null,
+   "prompt": "prompt.txt"
+  },
+  {
+   "name": "Max базовый",
+   "model": "GigaChat-2-Max",
+   "reasoning_effort": null,
+   "prompt": "prompt_base.txt"
+  },
+  {
+   "name": "Claude Sonnet 5.5 строгий",
+   "model": "claude-sonnet-5-5",
+   "reasoning_effort": "low",
+   "prompt": "prompt.txt",
+   "provider": "star"
+  },
+  {
+   "name": "Claude Sonnet 5.5 базовый",
+   "model": "claude-sonnet-5-5",
+   "reasoning_effort": "low",
+   "prompt": "prompt_base.txt",
+   "provider": "star"
+  },
+  {
+   "name": "GPT-6 Sol строгий",
+   "model": "gpt-6-sol",
+   "reasoning_effort": "low",
+   "prompt": "prompt.txt",
+   "provider": "star"
+  },
+  {
+   "name": "GPT-6 Sol базовый",
+   "model": "gpt-6-sol",
+   "reasoning_effort": "low",
+   "prompt": "prompt_base.txt",
+   "provider": "star"
+  },
+  {
+   "name": "DeepSeek V4 Pro строгий",
+   "model": "deepseek-v4-pro-0813",
+   "reasoning_effort": null,
+   "prompt": "prompt.txt",
+   "provider": "star"
+  },
+  {
+   "name": "DeepSeek V4 Pro базовый",
+   "model": "deepseek-v4-pro-0813",
+   "reasoning_effort": null,
+   "prompt": "prompt_base.txt",
+   "provider": "star"
+  }
+ ]
+}

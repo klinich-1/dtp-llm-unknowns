@@ -1,0 +1,1213 @@
+{
+ "version": "v1-2026-11-06-expert-approved",
+ "fields": [
+  "a_state",
+  "a_stop",
+  "a_man",
+  "a_contact",
+  "b_state",
+  "b_stop",
+  "b_man",
+  "b_contact",
+  "direction",
+  "place",
+  "priority"
+ ],
+ "groups": {
+  "a_state": "движение",
+  "a_stop": "движение",
+  "a_man": "движение",
+  "b_state": "движение",
+  "b_stop": "движение",
+  "b_man": "движение",
+  "a_contact": "пространство",
+  "b_contact": "пространство",
+  "direction": "пространство",
+  "place": "место",
+  "priority": "приоритет"
+ },
+ "values": {
+  "state": [
+   "moving",
+   "stopped",
+   "parked",
+   "unknown"
+  ],
+  "stop": [
+   "traffic_light",
+   "traffic",
+   "yield",
+   "parking",
+   "none",
+   "unknown"
+  ],
+  "man": [
+   "straight",
+   "left_turn",
+   "right_turn",
+   "u_turn",
+   "lane_change",
+   "overtaking",
+   "reversing",
+   "starting",
+   "none",
+   "unknown"
+  ],
+  "contact": [
+   "front",
+   "rear",
+   "left",
+   "right",
+   "front_left",
+   "front_right",
+   "rear_left",
+   "rear_right",
+   "unknown"
+  ],
+  "direction": [
+   "same",
+   "opposite",
+   "perpendicular",
+   "unknown"
+  ],
+  "place": [
+   "intersection",
+   "road",
+   "parking",
+   "yard",
+   "unknown"
+  ],
+  "priority": [
+   "A",
+   "B",
+   "none",
+   "unknown"
+  ]
+ },
+ "categories": {
+  "E": "Простые: почти всё сказано прямо",
+  "U": "Мало сведений: много неизвестного",
+  "S": "Пространственные: стороны, углы, направления",
+  "P": "Приоритет: нужен вывод по ПДД",
+  "C": "Разговорная речь и самоисправления",
+  "N": "Отрицания, сомнения и спорные утверждения"
+ },
+ "stories": [
+  {
+   "id": "E01",
+   "category": "E",
+   "text": "Стоял на красный на перекрёстке Ленина и Мира. Сзади въехала Гранта, ударила передом в мой задний бампер. Водитель Гранты сказал, что ехал прямо и не успел затормозить.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "traffic_light",
+    "a_man": "none",
+    "a_contact": "rear",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "front",
+    "direction": "same",
+    "place": "intersection",
+    "priority": "none"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "e",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "e",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "E02",
+   "category": "E",
+   "text": "Ехал прямо по главной дороге через перекрёсток. Справа со второстепенной прямо выехал Солярис, не уступил и ударил передом мне в правую переднюю дверь.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "front",
+    "direction": "perpendicular",
+    "place": "intersection",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "e",
+    "priority": "e"
+   }
+  },
+  {
+   "id": "E03",
+   "category": "E",
+   "text": "Сдавал задом на парковке у торгового центра и задним бампером задел пустую стоящую Киа. Удар пришёлся ей в левый задний угол.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "reversing",
+    "a_contact": "rear",
+    "b_state": "parked",
+    "b_stop": "parking",
+    "b_man": "none",
+    "b_contact": "rear_left",
+    "direction": "unknown",
+    "place": "parking",
+    "priority": "none"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "u",
+    "place": "e",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "E04",
+   "category": "E",
+   "text": "Поворачивал налево на зелёный. Навстречу прямо ехала Камри, она врезалась передом мне в правый бок.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "left_turn",
+    "a_contact": "right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "front",
+    "direction": "opposite",
+    "place": "intersection",
+    "priority": "A"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "e",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "E05",
+   "category": "E",
+   "text": "Ехал в правом ряду по проспекту. Машина из левого ряда начала перестраиваться в мой ряд и задела меня. У меня поцарапан левый передний угол, у неё правый задний.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "front_left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "lane_change",
+    "b_contact": "rear_right",
+    "direction": "same",
+    "place": "road",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "E06",
+   "category": "E",
+   "text": "Стоял в пробке на мосту. Машина впереди начала откатываться назад и ударила меня задним бампером в передний.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "traffic",
+    "a_man": "none",
+    "a_contact": "front",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "reversing",
+    "b_contact": "rear",
+    "direction": "same",
+    "place": "road",
+    "priority": "none"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "e",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "U01",
+   "category": "U",
+   "text": "Меня ударили во дворе. Я вышел из машины, а там уже вмятина на заднем бампере, второй водитель стоит рядом.",
+   "gold": {
+    "a_state": "unknown",
+    "a_stop": "unknown",
+    "a_man": "unknown",
+    "a_contact": "rear",
+    "b_state": "unknown",
+    "b_stop": "unknown",
+    "b_man": "unknown",
+    "b_contact": "unknown",
+    "direction": "unknown",
+    "place": "yard",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "u",
+    "a_stop": "u",
+    "a_man": "u",
+    "a_contact": "e",
+    "b_state": "u",
+    "b_stop": "u",
+    "b_man": "u",
+    "b_contact": "u",
+    "direction": "u",
+    "place": "e",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "U02",
+   "category": "U",
+   "text": "Столкнулись с белой Ладой на Гагарина, у меня разбита фара. Как всё случилось, толком не понял.",
+   "gold": {
+    "a_state": "unknown",
+    "a_stop": "unknown",
+    "a_man": "unknown",
+    "a_contact": "front",
+    "b_state": "unknown",
+    "b_stop": "unknown",
+    "b_man": "unknown",
+    "b_contact": "unknown",
+    "direction": "unknown",
+    "place": "unknown",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "u",
+    "a_stop": "u",
+    "a_man": "u",
+    "a_contact": "i",
+    "b_state": "u",
+    "b_stop": "u",
+    "b_man": "u",
+    "b_contact": "u",
+    "direction": "u",
+    "place": "u",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "U03",
+   "category": "U",
+   "text": "Ехал домой, в меня въехали. Повреждения у обеих машин несерьёзные.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "unknown",
+    "a_contact": "unknown",
+    "b_state": "unknown",
+    "b_stop": "unknown",
+    "b_man": "unknown",
+    "b_contact": "unknown",
+    "direction": "unknown",
+    "place": "unknown",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "u",
+    "a_contact": "u",
+    "b_state": "u",
+    "b_stop": "u",
+    "b_man": "u",
+    "b_contact": "u",
+    "direction": "u",
+    "place": "u",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "U04",
+   "category": "U",
+   "text": "Я парковался, а другая машина в это время выезжала с парковки. Чуть задели друг друга.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "unknown",
+    "a_contact": "unknown",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "unknown",
+    "b_contact": "unknown",
+    "direction": "unknown",
+    "place": "parking",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "u",
+    "a_contact": "u",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "u",
+    "b_contact": "u",
+    "direction": "u",
+    "place": "e",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "U05",
+   "category": "U",
+   "text": "На светофоре стояли две машины, моя первая. Потом удар, у меня смят багажник.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "traffic_light",
+    "a_man": "none",
+    "a_contact": "rear",
+    "b_state": "unknown",
+    "b_stop": "unknown",
+    "b_man": "unknown",
+    "b_contact": "unknown",
+    "direction": "unknown",
+    "place": "unknown",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "e",
+    "a_man": "i",
+    "a_contact": "i",
+    "b_state": "u",
+    "b_stop": "u",
+    "b_man": "u",
+    "b_contact": "u",
+    "direction": "u",
+    "place": "u",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "U06",
+   "category": "U",
+   "text": "Водитель Ниссана говорит, что я его подрезал, но я считаю, что виноват он сам. Удар был в мою заднюю левую дверь.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "unknown",
+    "a_contact": "rear_left",
+    "b_state": "unknown",
+    "b_stop": "unknown",
+    "b_man": "unknown",
+    "b_contact": "unknown",
+    "direction": "unknown",
+    "place": "unknown",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "u",
+    "a_contact": "e",
+    "b_state": "u",
+    "b_stop": "u",
+    "b_man": "u",
+    "b_contact": "u",
+    "direction": "u",
+    "place": "u",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "S01",
+   "category": "S",
+   "text": "Ехал прямо. На перекрёстке без светофора слева выскочил Форд и ударил меня в водительскую дверь своим правым передним углом.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "unknown",
+    "b_contact": "front_right",
+    "direction": "perpendicular",
+    "place": "intersection",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "i",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "u",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "e",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "S02",
+   "category": "S",
+   "text": "Выезжал задом с парковочного места и правым задним углом задел машину, которая проезжала сзади. Удар пришёлся ей в левый бок.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "reversing",
+    "a_contact": "rear_right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "left",
+    "direction": "perpendicular",
+    "place": "parking",
+    "priority": "A"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "e",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "S03",
+   "category": "S",
+   "text": "Ехали в одну сторону по двухполосной дороге, я во втором ряду. Он справа от меня решил развернуться через мою полосу и ударил передом мне в пассажирскую сторону.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "u_turn",
+    "b_contact": "front",
+    "direction": "same",
+    "place": "road",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "i",
+    "a_contact": "i",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "e",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "S04",
+   "category": "S",
+   "text": "На повороте дороги встречная машина срезала угол и выехала на мою полосу. Лобовое столкновение, у обеих машин разбиты передние левые части.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "front_left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "front_left",
+    "direction": "opposite",
+    "place": "road",
+    "priority": "none"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "e",
+    "place": "e",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "S05",
+   "category": "S",
+   "text": "Трогался от обочины, включил левый поворотник. Машина, ехавшая сзади по левой полосе, задела мой левый передний угол своим правым боком.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "starting",
+    "a_contact": "front_left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "right",
+    "direction": "same",
+    "place": "road",
+    "priority": "A"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "S06",
+   "category": "S",
+   "text": "На круговом движении я ехал по внешней полосе, а машина с внутренней начала съезжать прямо передо мной. Я ударил её передом в правый задний угол.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "front",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "right_turn",
+    "b_contact": "rear_right",
+    "direction": "same",
+    "place": "intersection",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "P01",
+   "category": "P",
+   "text": "Поворачивал направо со второстепенной дороги на главную. По главной слева ехал Рено, мы столкнулись: у меня разбит левый передний угол, у него правая сторона.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "right_turn",
+    "a_contact": "front_left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "right",
+    "direction": "perpendicular",
+    "place": "intersection",
+    "priority": "A"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "P02",
+   "category": "P",
+   "text": "Ехал прямо на зелёный, а слева на красный проехал внедорожник и врезался передом мне в левый бок.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "front",
+    "direction": "perpendicular",
+    "place": "intersection",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "P03",
+   "category": "P",
+   "text": "Выезжал из двора на дорогу и поворачивал налево. Машина ехала по дороге справа и ударила меня передом в правый задний угол.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "left_turn",
+    "a_contact": "rear_right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "front",
+    "direction": "perpendicular",
+    "place": "road",
+    "priority": "A"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "i",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "P04",
+   "category": "P",
+   "text": "На равнозначном перекрёстке без знаков я ехал прямо, справа от меня прямо ехал Хендай. Столкнулись: у меня правое переднее крыло, у него левое переднее.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "front_right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "front_left",
+    "direction": "perpendicular",
+    "place": "intersection",
+    "priority": "A"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "e",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "P05",
+   "category": "P",
+   "text": "Разворачивался на перекрёстке на зелёный. Встречная машина ехала прямо, удар пришёлся мне в правый задний угол.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "u_turn",
+    "a_contact": "rear_right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "unknown",
+    "direction": "opposite",
+    "place": "intersection",
+    "priority": "A"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "u",
+    "direction": "e",
+    "place": "e",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "P06",
+   "category": "P",
+   "text": "Стоял перед пешеходным переходом, пропускал людей. Сзади меня объезжал автобус, чтобы перестроиться в мой ряд, и задел мою левую сторону своим правым боком.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "yield",
+    "a_man": "none",
+    "a_contact": "left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "lane_change",
+    "b_contact": "right",
+    "direction": "same",
+    "place": "road",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "e",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "C01",
+   "category": "C",
+   "text": "Короче, еду я такой, ну не еду, стоял уже, на светофоре, и тут бац — в зад мне прилетает газелька.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "traffic_light",
+    "a_man": "none",
+    "a_contact": "rear",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "unknown",
+    "b_contact": "front",
+    "direction": "same",
+    "place": "unknown",
+    "priority": "none"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "e",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "u",
+    "b_contact": "i",
+    "direction": "i",
+    "place": "u",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "C02",
+   "category": "C",
+   "text": "Поворачивал направо, нет, стоп, налево, во двор. А сзади меня обгонял какой-то умник по встречке и ударил в левую дверь.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "left_turn",
+    "a_contact": "left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "overtaking",
+    "b_contact": "unknown",
+    "direction": "same",
+    "place": "road",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "u",
+    "direction": "i",
+    "place": "i",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "C03",
+   "category": "C",
+   "text": "Я на своей девятке, а он на крузаке. Он мне в бочину справа влетел, когда я по главной шёл прямо.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "unknown",
+    "b_contact": "front",
+    "direction": "unknown",
+    "place": "unknown",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "u",
+    "b_contact": "i",
+    "direction": "u",
+    "place": "u",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "C04",
+   "category": "C",
+   "text": "Ну там парковка у Пятёрочки, я назад сдавал, не, вперёд выезжал, а он сзади сдавал. В общем, он задом мне в переднюю правую часть.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "front_right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "reversing",
+    "b_contact": "rear",
+    "direction": "unknown",
+    "place": "parking",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "u",
+    "place": "e",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "C05",
+   "category": "C",
+   "text": "Стояла на аварийке у обочины, в меня сзади въехал таксист, у него в руке был телефон.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "unknown",
+    "a_man": "none",
+    "a_contact": "rear",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "unknown",
+    "b_contact": "front",
+    "direction": "same",
+    "place": "road",
+    "priority": "none"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "u",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "u",
+    "b_contact": "i",
+    "direction": "i",
+    "place": "i",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "C06",
+   "category": "C",
+   "text": "Значит так. Перекрёсток, у меня зелёный, я прямо. Он со встречки налево, не пропустил. Мне в морду, ему в правую сторону.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "front",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "left_turn",
+    "b_contact": "right",
+    "direction": "opposite",
+    "place": "intersection",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "e",
+    "place": "e",
+    "priority": "e"
+   }
+  },
+  {
+   "id": "N01",
+   "category": "N",
+   "text": "Я не поворачивал и не перестраивался, ехал строго в своём ряду. Машина справа начала поворачивать налево прямо передо мной, и я ударил её в левый бок.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "front",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "left_turn",
+    "b_contact": "left",
+    "direction": "same",
+    "place": "unknown",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "i",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "u",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "N02",
+   "category": "N",
+   "text": "Пострадавших нет. Я не уверен, ехал ли второй водитель или уже стоял, когда я въехал в него задним ходом.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "reversing",
+    "a_contact": "rear",
+    "b_state": "unknown",
+    "b_stop": "unknown",
+    "b_man": "unknown",
+    "b_contact": "unknown",
+    "direction": "unknown",
+    "place": "unknown",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "i",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "i",
+    "b_state": "u",
+    "b_stop": "u",
+    "b_man": "u",
+    "b_contact": "u",
+    "direction": "u",
+    "place": "u",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "N03",
+   "category": "N",
+   "text": "Сначала мне показалось, что удар был в заднюю дверь, но потом увидел — вмятина на заднем бампере. Я стоял в пробке.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "traffic",
+    "a_man": "none",
+    "a_contact": "rear",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "unknown",
+    "b_contact": "front",
+    "direction": "same",
+    "place": "unknown",
+    "priority": "none"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "e",
+    "a_man": "i",
+    "a_contact": "e",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "u",
+    "b_contact": "i",
+    "direction": "i",
+    "place": "u",
+    "priority": "i"
+   }
+  },
+  {
+   "id": "N04",
+   "category": "N",
+   "text": "Второй водитель утверждает, что стоял, но он катился вперёд и задел меня своим правым передним углом. Я ехал прямо по соседней левой полосе.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "right",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "unknown",
+    "b_contact": "front_right",
+    "direction": "same",
+    "place": "unknown",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "i",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "u",
+    "b_contact": "e",
+    "direction": "i",
+    "place": "u",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "N05",
+   "category": "N",
+   "text": "Никаких поворотов, ни я, ни он. Ехали навстречу друг другу по узкому проезду во дворе и зацепились зеркалами — у меня левое, у него тоже левое.",
+   "gold": {
+    "a_state": "moving",
+    "a_stop": "none",
+    "a_man": "straight",
+    "a_contact": "left",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "straight",
+    "b_contact": "left",
+    "direction": "opposite",
+    "place": "yard",
+    "priority": "unknown"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "e",
+    "a_contact": "e",
+    "b_state": "e",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "e",
+    "direction": "e",
+    "place": "e",
+    "priority": "u"
+   }
+  },
+  {
+   "id": "N06",
+   "category": "N",
+   "text": "Это не я въехал в него, а он в меня: он сдавал назад со своего места на парковке, а я стоял и ждал, пока место освободится.",
+   "gold": {
+    "a_state": "stopped",
+    "a_stop": "parking",
+    "a_man": "none",
+    "a_contact": "unknown",
+    "b_state": "moving",
+    "b_stop": "none",
+    "b_man": "reversing",
+    "b_contact": "rear",
+    "direction": "unknown",
+    "place": "parking",
+    "priority": "B"
+   },
+   "evidence": {
+    "a_state": "e",
+    "a_stop": "i",
+    "a_man": "i",
+    "a_contact": "u",
+    "b_state": "i",
+    "b_stop": "i",
+    "b_man": "e",
+    "b_contact": "i",
+    "direction": "u",
+    "place": "e",
+    "priority": "i"
+   }
+  }
+ ]
+}

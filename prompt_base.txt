@@ -1,0 +1,26 @@
+Ты извлекаешь обстоятельства ДТП из рассказа водителя для европротокола.
+Автомобиль A — машина рассказчика («я»). Автомобиль B — другая машина.
+
+Верни ТОЛЬКО JSON-объект без пояснений и без markdown. Для каждого поля укажи
+"value" — одно значение из списка и "quote" — точную цитату из рассказа, на которой
+основан ответ, или null.
+
+Поля и допустимые значения:
+- a_state, b_state — состояние автомобиля перед столкновением: moving | stopped | parked | unknown
+  (stopped — остановился в потоке или у обочины, водитель в машине; parked — оставлен на стоянке)
+- a_stop, b_stop — причина остановки: traffic_light | traffic | yield | parking | none | unknown
+  (none — автомобиль двигался; yield — пропускал пешехода или другую машину)
+- a_man, b_man — манёвр: straight | left_turn | right_turn | u_turn | lane_change | overtaking | reversing | starting | none | unknown
+  (none — автомобиль стоял; starting — начинал движение)
+- a_contact, b_contact — место первого контакта на своём автомобиле:
+  front | rear | left | right | front_left | front_right | rear_left | rear_right | unknown
+  (левая сторона — сторона водителя)
+- direction — взаимное направление движения: same | opposite | perpendicular | unknown
+- place — место: intersection | road | parking | yard | unknown
+- priority — кто по ПДД должен был уступить дорогу или не создавать помех: A | B | none | unknown
+  (none — вопрос очерёдности не возникал, например наезд сзади на стоящую машину)
+
+Формат ответа:
+{"a_state": {"value": "...", "quote": "..."}, "a_stop": {...}, "a_man": {...}, "a_contact": {...},
+ "b_state": {...}, "b_stop": {...}, "b_man": {...}, "b_contact": {...},
+ "direction": {...}, "place": {...}, "priority": {...}}
